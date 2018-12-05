@@ -1,0 +1,32 @@
+﻿
+.ajaxTextInput {
+    width: 180px;
+    margin: 1px 10px;
+    padding: 3px;
+}
+
+.ajaxTextResult {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    min-width: 200px;
+    max-height: 200px;
+    overflow-y: auto;
+    background: #FFF;
+    border: 1px solid #CCC;
+}
+
+    .ajaxTextResult ul {
+        cursor: pointer;
+        padding-left: 5px;
+        list-style: none;
+    }
+
+        .ajaxTextResult ul li {
+            line-height: 20px;
+            padding-left: 5px;
+        }
+
+            .ajaxTextResult ul li:hover {
+                background: lightblue;
+            }

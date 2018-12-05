@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>测试仿百度下拉框</title>
+
+	<link rel="stylesheet" type="text/css" href="ajaxSelectText/ajaxSelectText.css" />
+	<script type="text/javascript" src="jquery/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="ajaxSelectText/ajaxSelectText.js"></script>
+    <script type="text/javascript">
+    	$(function(){
+	        var data = [
+	            { key: '111', value: '一' }, { key: '222', value: '二' }, { key: '333', value: '三' },
+	            { key: '12', value: '一二' }, { key: '23', value: '二三' }, { key: '123', value: '一二三' },
+	            { key: '1234', value: '一到四' }, { key: '134', value: '一三四' }, { key: "14", value: '一四' }
+	        ];
+
+	        $('#queryInput').ajaxSelectText({
+	            type: 'static', //ajax的方式，参见组织架构人员多选功能扩展实现
+	            data: data,
+	            key: "key",
+	            callback: function (val, data) {
+	                var sMsg = "key:" + data.key + ", value:" + data.value;
+	                $('.resultPnl').html(sMsg);
+	            }
+	        });
+    	})
+    </script>
+</head>
+<body>
+    <div style="height: 40px;">
+        <input type="text" id="queryInput" class="ajaxTextInput" style="width: 200px;" placeholder="检索条件" />
+        <div class="ajaxTextResult" for="queryInput">
+            <ul></ul>
+        </div>
+    </div>
+    <p class="resultPnl" style="margin: 10px;">
+    </p>
+</body>
+</html>
