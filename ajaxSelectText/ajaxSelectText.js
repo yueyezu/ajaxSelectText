@@ -7,6 +7,7 @@
         var defalut = {
             type: "static", //筛选的模式，static：固定数据；ajax：根据请求
             key: 'name', //主键的名称，指数据中用于在下拉列表中展示的字段
+            emptyWhenClick: false,    //当回调函数存在时，操作控制是否在选择后清空搜索框内容。
             callback: null, //选择完成后的回调方法，包括两个参数：name-选择项的显示值;data-选择的数据实体
 
             data: [],   //用于筛选的静态数据，static模式使用
@@ -92,13 +93,20 @@
             var data = $selectLi.data('data');
 
             if (option.callback) {
-                $queryInput.val("");
+                if (option.emptyWhenClick) {
+                    $queryInput.val("");
+                    $queyrResultUl.empty();
+                    lastVal = "";
+                } else {
+                    $queryInput.val(name);
+                    $queryInput.trigger("keyup");
+                }
+
                 option.callback(name, data);
-                $queyrResultUl.empty();
                 $queryResult.hide();
             } else {
                 $queryInput.val(name);
-                $queyrResultUl.empty();
+                $queryInput.trigger("keyup");
                 $queryResult.hide();
             }
         });

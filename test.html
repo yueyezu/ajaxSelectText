@@ -18,6 +18,7 @@
 	        $('#queryInput').ajaxSelectText({
 	            type: 'static', //ajax的方式，参见组织架构人员多选功能扩展实现
 	            data: data,
+	            emptyWhenClick：true,
 	            key: "key",
 	            callback: function (val, data) {
 	                var sMsg = "key:" + data.key + ", value:" + data.value;
