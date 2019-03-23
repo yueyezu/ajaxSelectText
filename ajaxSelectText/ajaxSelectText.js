@@ -43,6 +43,7 @@
             var nowVal = $queryInput.val().trim();
             if (nowVal == "") {
                 $queyrResultUl.empty();
+                $queyrResultUl.data("selData",null);
                 return;
             }
             if (nowVal === lastVal) {
@@ -75,6 +76,12 @@
                     }
                 }, "json");
             }
+
+            // 如果最后获取的信息未空时，清除掉选择的信息的记录。
+            var linum = $queyrResultUl.children('li').length
+            if (linum == 0) {
+                $queyrResultUl.data("selData",null);
+            }
         });
 
         //控制文本框的状态
@@ -91,6 +98,9 @@
             var $selectLi = $(e.target);
             var name = $selectLi.text();
             var data = $selectLi.data('data');
+
+            // 标记选择项信息
+            $queyrResultUl.data("selData",data);
 
             if (option.callback) {
                 if (option.emptyWhenClick) {
@@ -110,5 +120,12 @@
                 $queryResult.hide();
             }
         });
+
+        return {
+            getSelected: function () {
+                var data = $queyrResultUl.data("selData");
+                return data;
+            }
+        };
     }
 })(jQuery, window);

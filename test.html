@@ -15,22 +15,30 @@
 	            { key: '1234', value: '一到四' }, { key: '134', value: '一三四' }, { key: "14", value: '一四' }
 	        ];
 
-	        $('#queryInput').ajaxSelectText({
+	        var querySelect = $('#queryInput').ajaxSelectText({
 	            type: 'static', //ajax的方式，参见组织架构人员多选功能扩展实现
 	            data: data,
-	            emptyWhenClick：true,
+	            emptyWhenClick: false,
 	            key: "key",
 	            callback: function (val, data) {
 	                var sMsg = "key:" + data.key + ", value:" + data.value;
 	                $('.resultPnl').html(sMsg);
 	            }
 	        });
-    	})
+
+	        $('#queryBtn').click(function(){
+		        var selData = querySelect.getSelected();
+		        console.log(selData);
+	            var sMsg = "key:" + data.key + ", value:" + data.value;
+	            alert(sMsg);
+	        });
+    	});
     </script>
 </head>
 <body>
     <div style="height: 40px;">
         <input type="text" id="queryInput" class="ajaxTextInput" style="width: 200px;" placeholder="检索条件" />
+        <input type="button" id="queryBtn" value="获取选择项" />
         <div class="ajaxTextResult" for="queryInput">
             <ul></ul>
         </div>
